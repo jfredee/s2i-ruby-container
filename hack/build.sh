@@ -38,9 +38,9 @@ function docker_build_with_version {
     BUILD_OPTIONS+=" --pull=true"
   fi
   docker build ${BUILD_OPTIONS} -t ${IMAGE_NAME} -f "${dockerfile}.version" .
-  if [[ "${SKIP_SQUASH}" != "1" ]]; then
-    squash "${dockerfile}.version"
-  fi
+#  if [[ "${SKIP_SQUASH}" != "1" ]]; then
+#    squash "${dockerfile}.version"
+#  fi
   rm -f "${DOCKERFILE_PATH}.version"
 }
 
@@ -78,9 +78,9 @@ for dir in ${dirs}; do
 
   IMAGE_NAME="${NAMESPACE}${BASE_IMAGE_NAME}-${dir//./}-${OS}"
 
-  if [[ -v TEST_MODE ]]; then
-    IMAGE_NAME+="-candidate"
-  fi
+#  if [[ -v TEST_MODE ]]; then
+#    IMAGE_NAME+="-candidate"
+#  fi
 
   echo "-> Building ${IMAGE_NAME} ..."
 
@@ -91,14 +91,14 @@ for dir in ${dirs}; do
     docker_build_with_version Dockerfile
   fi
 
-  if [[ -v TEST_MODE ]]; then
-    IMAGE_NAME=${IMAGE_NAME} test/run
-
-    if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
-      echo "-> Re-tagging ${IMAGE_NAME} image to ${IMAGE_NAME%"-candidate"}"
-      docker tag $IMAGE_NAME ${IMAGE_NAME%"-candidate"}
-    fi
-  fi
+#  if [[ -v TEST_MODE ]]; then
+#    IMAGE_NAME=${IMAGE_NAME} test/run
+#
+#    if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
+#      echo "-> Re-tagging ${IMAGE_NAME} image to ${IMAGE_NAME%"-candidate"}"
+#      docker tag $IMAGE_NAME ${IMAGE_NAME%"-candidate"}
+#    fi
+#  fi
 
   popd > /dev/null
 done
