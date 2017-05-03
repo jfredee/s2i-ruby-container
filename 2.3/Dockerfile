@@ -30,7 +30,10 @@ COPY ./contrib/ /opt/app-root
 
 RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
 
+ENV LD_LIBRARY_PATH /opt/rh/rh-nodejs4/root/usr/lib64:/opt/rh/rh-ruby23/root/usr/local/lib64:/opt/rh/rh-ruby23/root/usr/lib64
+
 USER 1001
 
+RUN /opt/rh/rh-ruby23/root/usr/bin/gem install foreman
 # Set the default CMD to print the usage of the language image
 CMD $STI_SCRIPTS_PATH/usage
