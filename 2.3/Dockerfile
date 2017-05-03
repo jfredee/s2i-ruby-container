@@ -34,6 +34,7 @@ ENV LD_LIBRARY_PATH /opt/rh/rh-nodejs4/root/usr/lib64:/opt/rh/rh-ruby23/root/usr
 
 USER 1001
 
+RUN /opt/rh/rh-ruby23/root/usr/bin/gem install bundler
 RUN /opt/rh/rh-ruby23/root/usr/bin/gem install foreman
 # Set the default CMD to print the usage of the language image
 CMD $STI_SCRIPTS_PATH/usage
