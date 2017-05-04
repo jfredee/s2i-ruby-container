@@ -31,11 +31,7 @@ COPY ./contrib/ /opt/app-root
 RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
 
 ENV LD_LIBRARY_PATH /opt/rh/rh-nodejs4/root/usr/lib64:/opt/rh/rh-ruby23/root/usr/local/lib64:/opt/rh/rh-ruby23/root/usr/lib64
-# RUN /opt/rh/rh-ruby23/root/usr/bin/gem install --local /opt/app-root/gems/bundler-1.14.6.gem
-# RUN /opt/rh/rh-ruby23/root/usr/bin/gem install --local /opt/app-root/gems/thor-0.19.4.gem
-# RUN /opt/rh/rh-ruby23/root/usr/bin/gem install --local /opt/app-root/gems/foreman-0.84.0.gem
 RUN /opt/rh/rh-ruby23/root/usr/bin/gem install bundler
-RUN /opt/rh/rh-ruby23/root/usr/bin/gem install foreman
 
 USER 1001
 
