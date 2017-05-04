@@ -21,8 +21,7 @@ export RACK_ENV=${RACK_ENV:-"production"}
 
 if is_puma_installed; then
   export_vars=$(cgroup-limits) ; export $export_vars
-
-  exec bundle exec "puma --config ../etc/puma.cfg"
+  exec foreman start
 else
   echo "You might consider adding 'puma' into your Gemfile."
 
